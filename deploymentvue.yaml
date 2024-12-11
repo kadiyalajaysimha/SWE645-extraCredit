@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentsurveyfrontenddeployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: studentsurveyfrontend
+  template:
+    metadata:
+      labels:
+        app: studentsurveyfrontend
+    spec:
+      containers:
+        - name: studentsurveyfrontend
+          image: IMAGE_NAME
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
