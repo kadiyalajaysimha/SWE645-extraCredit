@@ -51,10 +51,6 @@
             <span class="fw-bold"> Recommending Likelihood: </span
             >{{ survey.recommendation }}
           </p>
-          <p class="card-text">
-            <span class="fw-bold">Comments: </span
-            >{{ survey.additionalComments }}
-          </p>
 
           <button
             class="btn btn-primary btn-md cust-edit"
@@ -102,13 +98,15 @@ export default {
           let data = response.data;
           if (data && data.length > 0) {
             data.forEach((survey) => {
-              const likedList = survey.liked.split(",");
-              survey.likeStudents = likedList.includes("Students");
-              survey.likeLocation = likedList.includes("Location");
-              survey.likeDormRooms = likedList.includes("DormRooms");
-              survey.likeSports = likedList.includes("Sports");
-              survey.likeAtmosphere = likedList.includes("Atmosphere");
-              survey.likeCampus = likedList.includes("Campus");
+              if (survey.liked != null) {
+                const likedList = survey.liked.split(",");
+                survey.likeStudents = likedList.includes("Students");
+                survey.likeLocation = likedList.includes("Location");
+                survey.likeDormRooms = likedList.includes("DormRooms");
+                survey.likeSports = likedList.includes("Sports");
+                survey.likeAtmosphere = likedList.includes("Atmosphere");
+                survey.likeCampus = likedList.includes("Campus");
+              }
             });
             this.existingSurveys = data;
           }

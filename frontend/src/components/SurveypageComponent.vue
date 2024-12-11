@@ -209,15 +209,6 @@
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="additionalComments">Additional Comments</label>
-          <textarea
-            v-model="surveyModel.additionalComments"
-            class="form-control"
-            rows="5"
-          ></textarea>
-        </div>
-
         <button type="submit" class="btn-primary btn custom-submit">
           Submit
         </button>
@@ -260,7 +251,6 @@ export default {
         likeSports: "",
         interested: "",
         recommendation: "",
-        additionalComments: "",
       },
       likeOptions: {
         Students: "Students",
@@ -289,37 +279,41 @@ export default {
           let data = response.data;
           // console.log(data.liked);
           console.log("Initial", data);
-          const likedList = data.liked.split(",");
-          for (let j = 0; j < likedList.length; j++) {
-            if (likedList.includes("Students")) {
-              data["likeStudents"] = true;
-            } else {
-              data["likeStudents"] = "";
-            }
-            if (likedList.includes("Location")) {
-              data["likeLocation"] = true;
-            } else {
-              data["likeLocation"] = "";
-            }
-            if (likedList.includes("DormRooms")) {
-              data["likeDormRooms"] = true;
-            } else {
-              data["likeDormRooms"] = "";
-            }
-            if (likedList.includes("Sports")) {
-              data["likeSports"] = true;
-            } else {
-              data["likeSports"] = "";
-            }
-            if (likedList.includes("Atmosphere")) {
-              data["likeAtmosphere"] = true;
-            } else {
-              data["likeAtmosphere"] = "";
-            }
-            if (likedList.includes("Campus")) {
-              data["likeCampus"] = true;
-            } else {
-              data["likeCampus"] = "";
+          let likedList;
+          if (data.liked != null) {
+            likedList = data.liked.split(",");
+
+            for (let j = 0; j < likedList.length; j++) {
+              if (likedList.includes("Students")) {
+                data["likeStudents"] = true;
+              } else {
+                data["likeStudents"] = "";
+              }
+              if (likedList.includes("Location")) {
+                data["likeLocation"] = true;
+              } else {
+                data["likeLocation"] = "";
+              }
+              if (likedList.includes("DormRooms")) {
+                data["likeDormRooms"] = true;
+              } else {
+                data["likeDormRooms"] = "";
+              }
+              if (likedList.includes("Sports")) {
+                data["likeSports"] = true;
+              } else {
+                data["likeSports"] = "";
+              }
+              if (likedList.includes("Atmosphere")) {
+                data["likeAtmosphere"] = true;
+              } else {
+                data["likeAtmosphere"] = "";
+              }
+              if (likedList.includes("Campus")) {
+                data["likeCampus"] = true;
+              } else {
+                data["likeCampus"] = "";
+              }
             }
           }
           console.log("Initial Survey", this.surveyModel);
@@ -414,7 +408,6 @@ export default {
         liked: [],
         interested: "",
         recommendation: "",
-        additionalComments: "",
       };
     },
   },
